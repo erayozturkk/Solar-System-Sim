@@ -36,9 +36,9 @@ class SceneNode {
         const transformedModelView = MatrixMult(modelView, nodeTransform);
         const transformedMvp = MatrixMult(mvp, nodeTransform);
     
-        // Use the provided normalMatrix or recompute it dynamically
-        const transformedNormals = normalMatrix ? MatrixMult(normalMatrix, nodeTransform) : getNormalMatrix(transformedModelView);
-    
+        // Use the provided normalMatrix to compute transformed normals
+        const transformedNormals = MatrixMult(normalMatrix, nodeTransform)
+
         // Draw the MeshDrawer
         if (this.meshDrawer) {
             this.meshDrawer.draw(transformedMvp, transformedModelView, transformedNormals, transformedModel);
